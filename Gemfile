@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'letter_opener'
 end
 
 group :development do
@@ -63,6 +64,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "table_print", "~> 1.5"
 
-gem "letter_opener", "~> 1.7"
-
 gem "faker", "~> 2.7"
+
+gem 'dotenv-rails'

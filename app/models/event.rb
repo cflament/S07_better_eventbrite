@@ -15,8 +15,8 @@ class Event < ApplicationRecord
         presence: { message: "Intitulé de l'événement non rensigné"}, 
         length: { minimum: 5, maximum: 140, message: "L'intitulé de l'événement doit faire entre 5 et 140 caractères" }
     validates :description, 
-        presence: { message: "Une description est requise (min 20 caractères)"}, l
-        ength: { minimum: 20, maximum: 1000, message: "La description de l'événement doit faire entre 20 et 1000 caractères" }
+        presence: { message: "Une description de min 20 caractères est requise" },
+        length: { minimum: 20, maximum: 1000, message: "La description de l'événement doit faire entre 20 et 1000 caractères" }
     validates :price, 
         presence: { message: "Prix de l'événement non renseigné"}, 
         numericality: { only_integer: true, greater_than: 1, less_than: 1000, message: "Le prix doit être entre 1€ et 1000 €" }
