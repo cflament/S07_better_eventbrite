@@ -60,3 +60,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "table_print", "~> 1.5"
+
+gem "letter_opener", "~> 1.7"
+
+gem "faker", "~> 2.7"

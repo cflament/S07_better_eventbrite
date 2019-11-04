@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# create seed for 10 first users
+def user_seed
+    #User.destroy_all
+    10.times do |t|
+        User.create(
+            first_name: Faker::Name.first_name,
+            last_name: Faker::Name.last_name,
+            description: Faker::Lorem.sentence(word_count: 3, random_words_to_add: 4),
+            email: Faker::Internet.email,
+            encrypted_password: Faker::Internet.password
+        )
+    end
+    puts "10 users created"
+end
+ user_seed 
