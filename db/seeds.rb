@@ -36,4 +36,5 @@ def events_seed
         puts e.errors.full_messages
     end 
 end
+user_seed
 events_seed 
