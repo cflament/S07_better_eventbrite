@@ -1,0 +1,28 @@
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="diplay-3"> Eventbrite mais en mieux !</h1>
+        <h3 class="diplay-5"> Participe aux meilleurs événements dans ta ville</h3>
+    </div>
+</div>
+
+<div class="container">
+    <div ><h1>Index</h1>
+        <p>Trouve ton prochain événement :</p>
+    </div> 
+    <div class="list-group">
+        <% @events.sort {|a,b| b.created_at <=> a.created_at }.each do |event| %>
+            <a href= "#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><%= event.title%></h5>
+                    <small><%= event.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small>
+                </div>
+                <p class="mb-1"><%= event.description %></p>
+                <div class="d-flex w-100 justify-content-between">
+                    <small><%= event.administrator.first_name %></small>
+                    <span class="badge badge-primary badge-pill"> <%= event.users.size %> </span>
+                </div>
+            </a> 
+        <% end %>
+    </div>    
+</div>
+
