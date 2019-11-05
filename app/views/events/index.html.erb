@@ -9,19 +9,21 @@
     <div ><h1>Nos événements</h1><br/>
     </div> 
     <div class="list-group">
-        <% @events.sort {|a,b| b.created_at <=> a.created_at }.each do |event| %>
+        <% @events.sort {|a,b| b.start_date <=> a.start_date }.each do |event| %>
             <a href= "#" class="list-group-item list-group-item-action border-left border-info rounded-lg ">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><%= event.title%></h5>
-                    <small><%= event.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small>
+                    <h5 class="mb-1 "><%= event.title%></h5>
+                    <small><%= event.start_date.strftime("%Y-%m-%d %H:%M:%S") %> (<%= event.duration %> minutes) </small>
                 </div>
-                <p class="mb-1"><%= event.description %></p>
+                <p class="mb-1 text-left"><%= event.description %></p>
+                <p class="mb-1 text-left">lieu : <%= event.location %></p>
                 <div class="d-flex w-100 justify-content-between">
-                    <small><%= event.administrator.first_name %></small>
-                    <span class="badge badge-primary badge-pill"> <%= event.users.size %> </span>
+                    <small>organisateur : <%= event.administrator.first_name %></small>
+                    <small> <%= event.users.size %> participants </small>
                 </div>
-            </a> <br/>
+            </a>
         <% end %>
+        <br/>
     </div>    
 </div>
 
