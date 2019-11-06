@@ -6,7 +6,8 @@
         <p>Nom : <%= @user.last_name %></p>
         <p>email : <%= @user.email %></p>
         <p>description : <%= @user.description %></p>
-        <%= link_to "Editer", edit_user_registration_path(@user.id), class: "btn btn-lg btn-primary" %>
+        <%= link_to "Editer mes infos", edit_user_path(@user.id), class: "btn btn-info" %>
+        <%= link_to "Réinitialiser mon mot de passe", edit_user_registration_path(@user.id), class: "btn btn-info" %>
     </div>
 </div><br/>
 <div class="container">

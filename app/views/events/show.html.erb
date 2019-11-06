@@ -4,7 +4,29 @@
         <h1> <%= @event.title %></h1>
         <p><%= @event.start_date %> | <%= @event.location %> | <%= @event.duration %> min.</p>
         <p><%= @event.description %></p>
-        <p class="small">Organisé par <%= link_to @event.administrator.first_name, user_path(@event.administrator.id) %></p>
-        
+
+        <% if is_owner?(@event) %>
+            <div class="btn btn-outline-info">
+                <i class="fas fa-user-tie"></i>
+                <span> Tu es l'organisateur de l'événement </span>
+            </div>
+        <% else %>
+            <p class="small">Organisé par <%= link_to @event.administrator.first_name, user_path(@event.administrator.id) %></p>
+            <% if is_attending?(@event) %>
+                 <div class="btn btn-outline-info">
+                    <i class="fas fa-user-check"></i>
+                    <span> Tu participes à cet événement </span>
+                </div>
+                <div class="btn btn-info">
+                    <i class="fas fa-user-minus"></i>
+                    <span> <%= link_to "Je ne participe plus", "#", class: "text-light" %> </span>
+                </div>
+            <% else %>
+                <div class="btn btn-info">
+                    <i class="fas fa-user-plus"></i>
+                    <span> <%= link_to "Participer", new_attendance_path, :data => {:event_id => @event.id }, class: "text-light" %> </span>
+                </div>
+            <% end %>
+        <% end %>
     </div>
 </div><br/>

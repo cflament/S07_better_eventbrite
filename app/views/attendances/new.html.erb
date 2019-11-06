@@ -1,0 +1,7 @@
+Valide que tu veux aller à cet event <%= params[:event_id]%>
+<%= form_with model: @event, local: true, class: 'w-100 mt-5' do |f| %>
+    <button type="submit" class="btn btn-lg btn-info btn-block">
+        <i class="fas fa-user-plus"></i>
+        <span> <%= link_to "Participer", attendances_path, method: "POST", class: "text-light" %> </span>
+    </button>
+<% end %>
