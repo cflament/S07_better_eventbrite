@@ -14,10 +14,11 @@
     </div> 
     <div class="list-group">
         <% @user.administrated_events.sort {|a,b| b.start_date <=> a.start_date }.each do |event| %>
-            <a href= "#" class="list-group-item list-group-item-action border-left border-info rounded-lg ">
-                
+            <a href= <%= event_path(event.id) %> class="list-group-item list-group-item-action border-left border-info rounded-lg ">
+                <div class="column">
                     <h5 class="mb-1 "><%= event.title%></h5>
                     <small><%= event.start_date.strftime("%Y-%m-%d %H:%M:%S") %> (<%= event.duration %> minutes) </small>
+                </div>
             </a>
         <% end %>
     </div>    

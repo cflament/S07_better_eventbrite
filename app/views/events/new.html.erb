@@ -1,29 +1,47 @@
 <body>
+     <% if @event.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+        <p>Nous n'avons pas réussi à créer l'événement pour la (ou les) raison(s) suivante(s) :</p>
+        <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        </ul>
+    <% end %>
+    </div>
+    <% end %>
     <div class="container">
-        <h1>Organiser un événement : </h1>
         <br/>
-        <form>
+        <h1>Organiser un événement : </h1>
+        <%= form_with model: @event, local: true, class: 'w-100 mt-5' do |f| %>
             <div class="form-group">
                 <label for="title"> Nom de l'événement</label>
-                <input class="form-control" id="title" placeholder="Nom de votre événement">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" rows="3"></textarea>
+                <%= f.text_field :title, class: 'form-control', placeholder: "Nom de l'événement" %>
             </div>
             <div class="form-group">
                 <label for="start_date">Date et Heure de l'événement</label>
-                <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="start_date">
+                <%= f.datetime_local_field :start_date, class: 'form-control', value: Time.now.localtime.strftime("%Y-%m-%dT%H:%M"), placeholder: 'Date de début' %>
             </div>
             <div class="form-group">
                 <label for="duration"> Durée (minutes) </label>
-                <input class="form-control" id="duration">
+                <%= f.number_field :duration, min: 30, step: 5, class: 'form-control', value: 30, placeholder: 'Durée en minutes' %>
+            </div>
+            <div class= 'form-group'>
+                <label> Adresse </label>
+                <%= f.text_area :location, size: '20x2', class: 'form-control align-middle' %>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <%= f.text_area :description, size: '20x2', class: 'form-control align-middle', placeholder: 'Décris ton événement le mieux possible pour attirer du monde' %>
             </div>
             <div class="form-group">
                 <label for="price"> Prix (€) </label>
-                <input class="form-control" id="price">
+                <%= f.number_field :price, in: 1..1000, step: 1, class: 'form-control align-middle' %>
+            </div>
+            <div class= 'form-group'>
+                <%= f.hidden_field :administrator_id, value: current_user.id %>
             </div>
             <button type="submit" class="btn btn-lg btn-info btn-block">Créer mon événement</button>
-            
+        <% end %>
         </form>
     </div>
+

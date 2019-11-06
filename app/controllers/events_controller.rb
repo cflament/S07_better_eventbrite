@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @events = Event.all
   end
@@ -8,20 +10,25 @@ class EventsController < ApplicationController
   end 
 
   def create
-    @event.Event.new(
-      title: params[:title],
-      description: params[:description],
-      price: params[:price],
-      duration: params[:duration],
-      start_date: params[:start_date]
-    )
+    @event = Event.new(event_params)
+    puts event_params
 
     if @event.save
       flash[:success] = "Ton événement a bien été créé"
-      redirect_to root_path
+      redirect_to event_path(@event.id)
     else
       flash[:danger] = "L'événement n'a pas pu être créé"
-      render new_user_path
+      render new_event_path
     end 
+  end
+
+  def show
+    @event = Event.find(params[:id])
   end 
+
+  private
+
+  def event_params
+    params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location, :administrator_id)
+  end
 end

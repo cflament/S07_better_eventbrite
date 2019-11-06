@@ -1,0 +1,10 @@
+<div class="container">
+    <br/>
+    <div class="mb-1">
+        <h1> <%= @event.title %></h1>
+        <p><%= @event.start_date %> | <%= @event.location %> | <%= @event.duration %> min.</p>
+        <p><%= @event.description %></p>
+        <p class="small">Organisé par <%= link_to @event.administrator.first_name, user_path(@event.administrator.id) %></p>
+        
+    </div>
+</div><br/>
