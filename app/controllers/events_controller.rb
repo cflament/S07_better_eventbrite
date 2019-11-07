@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_event, only: [:edit, :show]
+  before_action :set_administrator, only: [:edit]
 
   def index
     @events = Event.all
@@ -22,29 +24,23 @@ class EventsController < ApplicationController
     end 
   end
 
-  def show
-    @event = page_event
+  def edit
   end
 
-  def subscribe
-    @event = page_event
-    if @event.users.include? current_user 
-      flash[:success] = "Vous participez déjà à l'événement"
-      redirect_to @event 
-    else 
-      @event.users << current_user 
-      flash[:success] = "Vous participez à l'événement"
-      redirect_to @event 
-    end 
+  def show
   end
 
   private
 
-  def page_event
-    Event.find(params[:id])
-  end 
-
   def event_params
     params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location, :administrator_id)
   end
+
+  def set_administrator
+    @administrator = @event.administrator
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
+  end 
 end

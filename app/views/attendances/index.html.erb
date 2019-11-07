@@ -1,25 +1,34 @@
 <% content_for :title, "Espace Evénement" %>
 <div class="container">
-    <h1>Espace événement</h1>
-    <br/>
-    <table>
-        <thead>
-            <th>Invité</th>
-            <th>Email</th>
-            <th>Détails</th>
-        </thead>
-        <tbody>
-            <% @attendees.each do |attendee| %>
-                <tr>
-                    <td><%= attendee.full_name %></td>
-                    <td><%= attendee.email %></td>
-                    <td class="text-center">
-                        <%= link_to user_path(attendee.id) do %>
-                            <i class="text-info fas fa-info-circle"> </i>
-                        <% end %>
-                    </td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+  <h1>Espace événement</h1>
+  <hr/>
+  <br/>
+  <table class='w-100'>
+      <thead>
+          <th class='w-25'>Invité</th>
+          <th class='w-50'>Email</th>
+      </thead>
+      <tbody>
+          <% @attendees.each do |attendee| %>
+              <tr>
+                  <!-- COMMENTED out FULL NAME -->
+                  <td>
+                    Prénom et Nom
+                    <%#= attendee.full_name %>
+                  </td>
+                  <td>
+                    <%= attendee.email %>
+                    <%= link_to user_path(attendee.id) do %>
+                      <i class="text-info fas fa-info-circle ml-5"> </i>
+                    <% end %>                      
+                  </td>
+              </tr>
+          <% end %>
+      </tbody>
+  </table>
+
+  <hr/>
+
+  <%= link_to "Éditer l'évènement", edit_event_path(@event), class: 'btn btn-warning' %>
 </div> <!--close cntainer -->
+
