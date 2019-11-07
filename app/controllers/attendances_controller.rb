@@ -1,6 +1,8 @@
 class AttendancesController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_administrator, only[:index]
+    before_action :set_event
+    before_action :set_administrator, only: [:index]
+
 
 
   def new
@@ -35,7 +37,6 @@ class AttendancesController < ApplicationController
   end
 
   def index
-    @event = Event.find(params[:event_id])
     @attendees = @event.users
   end 
 
@@ -56,6 +57,10 @@ class AttendancesController < ApplicationController
     puts params[:stripeToken]
     puts params[:stripeTokenType]
     params.permit(:stripeToken, :stripeTokenType, :stripeEmail)
+  end 
+
+  def set_event
+    @event = Event.find(params[:event_id])
   end 
 
   def set_administrator

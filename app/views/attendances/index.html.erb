@@ -1,20 +1,25 @@
-<table>
-    <thead>
-        <th>Invité</th>
-        <th>Email</th>
-        <th>Détails</th>
-    </thead>
-    <% @attendees.each do |attendee| %>
-        <tr>
-            <td><%= attendee.user.full_name %></td>
-            <td><%= attendee.user.email %></td>
-            <td>
-                <div class="btn btn-outline-info">
-                    <i class="fas fa-user-check"></i>
-                    <span> <%= link_to user_path(attendee.id) %> </span>
-                </div>
-            </td>
-        </tr>
-    <% end %>
-    
-</table>
+<% content_for :title, "Espace Evénement" %>
+<div class="container">
+    <h1>Espace événement</h1>
+    <br/>
+    <table>
+        <thead>
+            <th>Invité</th>
+            <th>Email</th>
+            <th>Détails</th>
+        </thead>
+        <tbody>
+            <% @attendees.each do |attendee| %>
+                <tr>
+                    <td><%= attendee.full_name %></td>
+                    <td><%= attendee.email %></td>
+                    <td class="text-center">
+                        <%= link_to user_path(attendee.id) do %>
+                            <i class="text-info fas fa-info-circle"> </i>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div> <!--close cntainer -->
