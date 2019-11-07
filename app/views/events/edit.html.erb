@@ -1,1 +1,41 @@
-<p>EDIT EVENT</p>
+<%= content_for :title, "Éditer l'évènement" %>
+
+<div class='container'>
+  <h1>Bienvenue sur la page d'édition de ton évènement merveilleux !</h1>
+
+  <%= form_with model: @event, local: true, class: 'w-100 mt-5' do |form| %>
+  <div class="form-group">
+    <label for="title"> Nom de l'événement</label>
+    <%= form.text_field :title, class: 'form-control', value: @event.title %>
+  </div>
+  <div class="form-group">
+    <label for="start_date">Date et Heure de l'événement</label>
+    <%= form.datetime_local_field :start_date, class: 'form-control', value: @event.start_date%>
+  </div>
+  <div class="form-group">
+    <label for="duration"> Durée (minutes) </label>
+    <%= form.number_field :duration, min: 30, step: 5, class: 'form-control', value: @event.duration %>
+  </div>
+  <div class= 'form-group'>
+    <label> Adresse </label>
+    <%= form.text_area :location, size: '20x2', class: 'form-control align-middle' %>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <%= form.text_area :description, size: '20x2', class: 'form-control align-middle', value: @event.description %>
+  </div>
+  <div class="form-group">
+    <label for="price"> Prix (€) </label>
+    <%= form.number_field :price, in: 1..1000, step: 1, class: 'form-control align-middle', value: @event.price %>
+  </div>
+  <div class= 'form-group'>
+  </div>
+  
+  <button type="submit" class="btn btn-lg btn-info btn-block">Mettre à jour mon événement</button>
+<% end %>
+
+
+  <hr/>
+
+  <%= link_to "Retour à l'évènement", @event, class: 'btn btn-info'%>
+</div> <!-- close container>
