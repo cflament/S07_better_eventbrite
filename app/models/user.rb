@@ -15,4 +15,8 @@ class User < ApplicationRecord
     def welcome_send
         NewUserMailer.welcome_email(self).deliver_now
     end
+
+    def full_name
+      self.first_name.capitalize + ' ' + self.last_name.capitalize
+    end
 end
