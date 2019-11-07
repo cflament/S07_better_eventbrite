@@ -22,10 +22,6 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
-  def is_owner?(event)
-    event.administrator == Self
-  end 
-
   private
 
   def page_user

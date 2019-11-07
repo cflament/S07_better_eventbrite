@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+    devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
     validates :email, presence: true, uniqueness: { message: "Cet email appartient déjà à un utilisateur" } 
 
     has_many :attendances
@@ -12,6 +13,6 @@ class User < ApplicationRecord
     after_create :welcome_send
 
     def welcome_send
-      NewUserMailer.welcome_email(self).deliver_now
+        NewUserMailer.welcome_email(self).deliver_now
     end
 end
