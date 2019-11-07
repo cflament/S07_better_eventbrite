@@ -31,14 +31,14 @@
     <div class= 'form-group'>
     </div>
     
-    <button type="submit" class="btn btn-lg btn-info btn-block">Mettre à jour mon événement</button>
-  <% end %>
-
-  <%= button_to 'Supprimer mon évènement', @event , { :method => :delete, :class => 'btn btn-danger'} %>
-
-
+    <button type="submit" class="btn btn-lg btn-success btn-block">Mettre à jour mon événement</button>
+  <% end %> <!-- end of EDIT form -->
 
   <hr/>
 
-  <%= link_to "Retour à l'évènement", @event, class: 'btn btn-info'%>
+  <%= button_to 'Supprimer mon évènement', @event , { :method => :delete, :class => 'btn btn-danger btn-lg w-50'} %>
+
+  <hr/>
+
+  <%= link_to "Retour à l'évènement", @event, class: 'btn btn-info w-25'%>
 </div> <!-- close container>
