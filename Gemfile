@@ -69,3 +69,7 @@ gem "faker", "~> 2.7"
 gem 'dotenv-rails'
 
 gem "devise", "~> 4.7"
+
+gem "stripe", "~> 5.8"
+
+gem "better_errors", "~> 2.5"
