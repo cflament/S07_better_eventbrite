@@ -1,5 +1,8 @@
 class AttendancesController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_administrator, only[:index]
+
+
   def new
     @attendance = Attendance.new
   end 
@@ -54,5 +57,9 @@ class AttendancesController < ApplicationController
     puts params[:stripeTokenType]
     params.permit(:stripeToken, :stripeTokenType, :stripeEmail)
   end 
+
+  def set_administrator
+    @administrator = @event.administrator
+  end
 
 end
