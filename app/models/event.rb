@@ -19,7 +19,7 @@ class Event < ApplicationRecord
         length: { minimum: 20, maximum: 1000, message: "La description de l'événement doit faire entre 20 et 1000 caractères" }
     validates :price, 
         presence: { message: "Prix de l'événement non renseigné"}, 
-        numericality: { only_integer: true, greater_than: 1, less_than: 1000, message: "Le prix doit être entre 1€ et 1000 €" }
+        numericality: { only_integer: true, greater_than: 1, less_than: 1000, allow_nil: true, message: "Le prix doit être entre 1€ et 1000 €" }
     validates :location, presence: { message: "Lieu de l'événement non renseigné"} 
 
     def start_date_cannot_be_in_the_past

@@ -12,19 +12,23 @@ class AttendancesController < ApplicationController
 
   def create
     @attendance = Attendance.new(a_params)
-    @amount = @attendance.event.price * 100 
-    customer = Stripe::Customer.create({
-        email: stripe_params[:stripeEmail],
-        source: stripe_params[:stripeToken],
-    })
-    @attendance.stripe_customer_id = customer.id
-    charge = Stripe::Charge.create({
-        customer: customer.id,
-        amount: @amount,
-        description: 'Rails Stripe customer',
-        currency: 'eur',
-    })
-    if @attendance.save
+    
+    unless is_free?
+      @amount = @attendance.event.price * 100
+      customer = Stripe::Customer.create({
+          email: stripe_params[:stripeEmail],
+          source: stripe_params[:stripeToken],
+      })
+      @attendance.stripe_customer_id = customer.id
+      charge = Stripe::Charge.create({
+          customer: customer.id,
+          amount: @amount,
+          description: 'Rails Stripe customer',
+          currency: 'eur',
+      })
+    end
+
+    if @attendance.save!
         flash[:success] = "Nouvelle participation à l'évenement enregistrée"
         redirect_to event_path(a_params[:event_id])    
     else 

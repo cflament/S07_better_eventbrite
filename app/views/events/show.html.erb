@@ -20,18 +20,9 @@
                     <i class="fas fa-user-check"></i>
                     <span> Tu participes à cet événement </span>
                 </div>
-                <!--<div class="btn btn-info">
-                    <i class="fas fa-user-minus"></i>
-                    <span> <%= link_to "Je ne participe plus", "#", class: "text-light" %> </span>
-                </div> -->
             <% else %>
                 <div class = "row">
                     <i class="fas fa-user-plus"></i>
-                    <!-- <%= form_tag event_attendances_path(@event.id) do %>
-                        <%= hidden_field_tag(:user_id, current_user.id) %>
-                        <%= hidden_field_tag(:event_id, @event.id) %>
-                        <%= submit_tag("Participer") %>
-                    <% end %> -->
                     <span> Participer </span>
                     <%= form_tag event_attendances_path(@event.id) do %>
                         <article>
@@ -46,12 +37,22 @@
                             <span>- prix : <%= @event.price %> € </span>
                             </label>
                         </article>
+                        <% if @event.price %>
+                          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                  data-description="A month's subscription"
+                                  data-amount=<%= @event.price*100 %>
+                                  data-locale="auto"></script>
+                        <% else %>
+                          <%= button_tag(type: 'submit', class: 'btn btn-info') do %>
+                            <i class="fas fa-user-plus"></i>
+                            <span class= 'ml-3'>Moi aussi !</span>
+                          <% end %>
 
-                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                                data-description="A month's subscription"
-                                data-amount=<%= @event.price*100 %>
-                                data-locale="auto"></script>
+                            
+                            
+                          </div>
+                        <% end %>
                     <% end %>
                 </div>
             <% end %>
