@@ -1,5 +1,5 @@
 module UsersHelper
-    def is_owner?(event)
+    def is_administrator?(event)
         event.administrator == current_user
     end
 

@@ -36,9 +36,9 @@
 
   <hr/>
 
-  <%= button_to 'Supprimer mon évènement', @event , { :method => :delete, :class => 'btn btn-danger btn-lg w-50'} %>
+  <%= button_to 'Supprimer mon évènement', @event , { :method => :delete, :class => 'btn btn-danger btn-lg w-50', :data => { :confirm => "Are you sure you want to reset the indexes?" } } %>
 
   <hr/>
 
-  <%= link_to "Retour à l'évènement", @event, class: 'btn btn-info w-25'%>
+  <%= link_to "Retour à l'évènement", @event, class: 'btn btn-info w-25' %>
 </div> <!-- close container>

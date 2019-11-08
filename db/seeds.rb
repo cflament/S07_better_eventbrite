@@ -37,4 +37,5 @@ def events_seed
     end 
 end
 
+# user_seed
 events_seed 
