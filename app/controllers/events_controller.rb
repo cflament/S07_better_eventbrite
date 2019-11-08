@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only: [:destroy, :edit, :update, :show]
+  before_action :set_attendance, only: [:show]
   before_action :has_access?, only: [:edit, :update, :destroy]
   before_action :set_administrator, only: [:edit]
   
@@ -62,6 +63,10 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def set_attendance
+    @attendance = @event.attendances.all.find { |attendance| attendance.user == current_user }
   end
 
 end

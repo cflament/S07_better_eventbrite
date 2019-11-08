@@ -1,9 +1,9 @@
 class AttendancesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_event
-    before_action :has_access?, except: [:new, :create]
+    before_action :set_attendance, only: [:destroy]
+    before_action :has_access?, except: [:new, :create, :destroy]
     before_action :set_administrator, only: [:index]
-
 
 
   def new
@@ -45,7 +45,11 @@ class AttendancesController < ApplicationController
     @attendees = @event.users
   end 
 
-
+def destroy
+  @attendance.destroy
+  flash[:warning] = "Ok, on ne t'y verra pas. Dommage..."
+  redirect_to @event
+end
 
   private
 
@@ -70,6 +74,10 @@ class AttendancesController < ApplicationController
 
   def set_administrator
     @administrator = @event.administrator
+  end
+
+  def set_attendance
+    @attendance = @event.attendances.find{ |attendance| attendance.user == current_user }
   end
 
 end

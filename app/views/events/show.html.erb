@@ -20,6 +20,10 @@
                     <i class="fas fa-user-check"></i>
                     <span> Tu participes à cet événement </span>
                 </div>
+                <% if @event.is_free? %>
+                  <%= button_to "Je n'y vais plus", event_attendance_path(@event, @attendance), { :method => :delete, :class => 'btn btn-outline-danger' } %>
+                <% end %>
+
             <% else %>
                     <%= form_tag event_attendances_path(@event.id) do %>
                         <article>

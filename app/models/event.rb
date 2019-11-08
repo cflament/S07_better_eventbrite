@@ -21,6 +21,9 @@ class Event < ApplicationRecord
         numericality: { only_integer: true, greater_than: 1, less_than: 1000, allow_nil: true, message: "Le prix doit être entre 1€ et 1000 €" }
     validates :location, presence: { message: "Lieu de l'événement non renseigné"} 
 
+    def is_free?
+      !self.price
+    end
 
     def display_price
       if price
