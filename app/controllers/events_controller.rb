@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   def destroy
     deleted_event_title = @event.title
     @event.destroy
-    flash[:warning] = "Your event '#{deleted_event_title}' was successfully removed. Proud of yourself ?"
+    flash[:warning] = "Ton évènement '#{deleted_event_title}' a bien été supprimé. Tu te sens mieux ?"
     redirect_to events_path
   end
 
