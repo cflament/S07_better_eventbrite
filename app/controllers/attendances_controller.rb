@@ -1,6 +1,7 @@
 class AttendancesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_event
+    before_action :has_access?, except: [:new, :create]
     before_action :set_administrator, only: [:index]
 
 
