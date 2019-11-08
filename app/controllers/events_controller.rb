@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event, only: [:edit, :show]
+  before_action :set_event, only: [:destroy, :edit, :show]
   before_action :set_administrator, only: [:edit]
 
   def index
@@ -28,6 +28,13 @@ class EventsController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+    deleted_event_title = @event.title
+    @event.destroy
+    flash[:warning] = "Your event '#{deleted_event_title}' was successfully removed. Proud of yourself ?"
+    redirect_to events_path
   end
 
   private
