@@ -1,9 +1,9 @@
 class AttendancesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_event
-    before_action :has_access?, except: [:new, :create]
+    before_action :set_attendance, only: [:destroy]
+    before_action :has_access?, except: [:new, :create, :destroy]
     before_action :set_administrator, only: [:index]
-
 
 
   def new
@@ -12,19 +12,23 @@ class AttendancesController < ApplicationController
 
   def create
     @attendance = Attendance.new(a_params)
-    @amount = @attendance.event.price * 100 
-    customer = Stripe::Customer.create({
-        email: stripe_params[:stripeEmail],
-        source: stripe_params[:stripeToken],
-    })
-    @attendance.stripe_customer_id = customer.id
-    charge = Stripe::Charge.create({
-        customer: customer.id,
-        amount: @amount,
-        description: 'Rails Stripe customer',
-        currency: 'eur',
-    })
-    if @attendance.save
+    
+    unless is_free?
+      @amount = @attendance.event.price * 100
+      customer = Stripe::Customer.create({
+          email: stripe_params[:stripeEmail],
+          source: stripe_params[:stripeToken],
+      })
+      @attendance.stripe_customer_id = customer.id
+      charge = Stripe::Charge.create({
+          customer: customer.id,
+          amount: @amount,
+          description: 'Rails Stripe customer',
+          currency: 'eur',
+      })
+    end
+
+    if @attendance.save!
         flash[:success] = "Nouvelle participation à l'évenement enregistrée"
         redirect_to event_path(a_params[:event_id])    
     else 
@@ -41,7 +45,11 @@ class AttendancesController < ApplicationController
     @attendees = @event.users
   end 
 
-
+def destroy
+  @attendance.destroy
+  flash[:warning] = "Ok, on ne t'y verra pas. Dommage..."
+  redirect_to @event
+end
 
   private
 
@@ -66,6 +74,10 @@ class AttendancesController < ApplicationController
 
   def set_administrator
     @administrator = @event.administrator
+  end
+
+  def set_attendance
+    @attendance = @event.attendances.find{ |attendance| attendance.user == current_user }
   end
 
 end
