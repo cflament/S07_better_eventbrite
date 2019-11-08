@@ -73,3 +73,5 @@ gem "devise", "~> 4.7"
 gem "stripe", "~> 5.8"
 
 gem "better_errors", "~> 2.5"
+
+gem "binding_of_caller", "~> 0.8.0"
