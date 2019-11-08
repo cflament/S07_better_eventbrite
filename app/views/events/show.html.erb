@@ -21,9 +21,6 @@
                     <span> Tu participes à cet événement </span>
                 </div>
             <% else %>
-                <div class = "row">
-                    <i class="fas fa-user-plus"></i>
-                    <span> Participer </span>
                     <%= form_tag event_attendances_path(@event.id) do %>
                         <article>
                             <% if flash[:error].present? %>
@@ -34,7 +31,7 @@
                             <%= hidden_field_tag(:user_id, current_user.id) %>
                             <%= hidden_field_tag(:event_id, @event.id) %>
                             <label class="amount">
-                            <span>- prix : <%= @event.price %> € </span>
+                            <span><%= @event.display_price %></span>
                             </label>
                         </article>
                         <% if @event.price %>
@@ -48,10 +45,6 @@
                             <i class="fas fa-user-plus"></i>
                             <span class= 'ml-3'>Moi aussi !</span>
                           <% end %>
-
-                            
-                            
-                          </div>
                         <% end %>
                     <% end %>
                 </div>

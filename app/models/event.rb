@@ -18,9 +18,19 @@ class Event < ApplicationRecord
         presence: { message: "Une description de min 20 caractères est requise" },
         length: { minimum: 20, maximum: 1000, message: "La description de l'événement doit faire entre 20 et 1000 caractères" }
     validates :price, 
-        presence: { message: "Prix de l'événement non renseigné"}, 
         numericality: { only_integer: true, greater_than: 1, less_than: 1000, allow_nil: true, message: "Le prix doit être entre 1€ et 1000 €" }
     validates :location, presence: { message: "Lieu de l'événement non renseigné"} 
+
+
+    def display_price
+      if price
+        "Prix de l'évènement : " + self.price.to_s + ' €'
+      else
+        "Cet évènement est gratuit, youpi !"
+      end
+    end
+
+    private
 
     def start_date_cannot_be_in_the_past
         if start_date.present? && start_date < DateTime.now
@@ -33,5 +43,4 @@ class Event < ApplicationRecord
             errors.add(:duration, "Entrer une durée qui soit un mutiple de 5 minutes")
         end 
     end 
-
 end
