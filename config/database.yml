@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: better-eventbrite_production
-  username: better-eventbrite
-  password: <%= ENV['BETTER-EVENTBRITE_DATABASE_PASSWORD'] %>
+  # username: better-eventbrite
+  # password: <%= ENV['BETTER-EVENTBRITE_DATABASE_PASSWORD'] %>
