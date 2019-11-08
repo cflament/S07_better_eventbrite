@@ -49,5 +49,12 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
-  end 
+  end
+
+  def administrator?
+    unless 
+      flash[:danger] = "Tu ne peux pas consulter cette page profil utilisateur."
+      redirect_to root_path
+    end 
+  end
 end
