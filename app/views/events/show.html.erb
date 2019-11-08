@@ -5,11 +5,14 @@
         <p><%= @event.start_date %> | <%= @event.location %> | <%= @event.duration %> min.</p>
         <p><%= @event.description %></p>
 
-        <% if is_owner?(@event) %>
+        <% if is_administrator?(@event) %>
             <div class="btn btn-outline-info">
+              
                 <i class="fas fa-user-tie"></i>
                 <span> Tu es l'organisateur de l'événement </span>
+                
             </div>
+            <%= link_to 'Mon espace évènement', event_attendances_path(@event), class: 'btn btn-info ml-3' %>
         <% else %>
             <p class="small">Organisé par <%= link_to @event.administrator.first_name, user_path(@event.administrator.id) %></p>
             <% if is_attending?(@event) %>
