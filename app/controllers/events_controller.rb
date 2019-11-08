@@ -25,6 +25,11 @@ class EventsController < ApplicationController
   end
 
   def edit
+    puts params
+  end
+
+  def update
+    puts event_params
   end
 
   def show
