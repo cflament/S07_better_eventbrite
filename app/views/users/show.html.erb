@@ -25,15 +25,18 @@
     </div>    
 </div>
 
-
+<!-- displaying current profile picture -->
 <h3>Photo de profil actuelel</h3>
 <%if @user.profile_picture.attached? %>
   <%= image_tag @user.profile_picture, alt: 'profile_picture' %>
 <%else%>
   <p>=== Il n'y a pas encore de photo de profil liée à cet utilisateurice ===</p>
 <%end%>
+<!-- ---------------------------------- -->
 
+<!-- add a new profile picture -->
 <%= form_tag user_profile_pictures_path(@user),multipart: true  do %>
   <%= file_field_tag :profile_picture %>
   <%= submit_tag "Téléverser la photo de profil" %>
 <% end %>
+<!-- ------------------------- -->
