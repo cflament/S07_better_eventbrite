@@ -22,6 +22,18 @@ def user_seed
     puts "3 users created"
 end 
 
+def profile_picture_seed
+  User.all.each do |user|
+    picture_name = 'profile_' + rand(1..12).to_s + '.jpg'
+    picture_path = Rails.root.join('app','assets', 'images', 'profile_pictures', picture_name)
+    user.profile_picture.attach(
+      io: File.open(picture_path),
+      filename: picture_name,
+      content_type: 'image/jpg'
+    )
+  end
+end
+
 def events_seed
     10.times do |t|
         e = Event.create(
