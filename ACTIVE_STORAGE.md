@@ -105,6 +105,7 @@ $ rails routes grep | profile
       * voir [Rails GitHub issue 1](https://github.com/rails/rails/issues/33500)
       * voir [Rails GitHub issue 2](https://github.com/rails/rails/issues/34939)
   * mettre en place une photo par défaut
+    * pas encore trouvé comment !
 
 * La même pour l'évènement (je viens de voir que ce n'était pas demandé pour l'utilisateur :/) **boulet**
   * en ajoutant une validation 'obligatoire' pour la photo de l'évènement
