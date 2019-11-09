@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   end 
   
   resources :users, only: [:show, :edit, :update] do
-    resources :profile_pictures, only: [:create]
+    resources :profile_pictures, only: [:create, :destroy]
   end
 end
