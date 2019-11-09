@@ -4,10 +4,11 @@
     <!-- displaying current profile picture if any -->
     <div class='mb-1 col-md-4'>
       <%if @user.profile_picture.attached? %>
-        <%= image_tag @user.profile_picture, alt: 'profile_picture', class: 'img-fluid' %>
+        <%= image_tag @user.profile_picture, alt: 'profile_picture', class: 'img-fluid border border-dark rounded w-75' %>
       <%else%>
-        <p>Vous n'avez pas encore défini de photo de profil.</p>
-      <%end%>
+        <p class='text-secondary mt-3'>Vous n'avez pas encore défini de photo de profil.</p>
+      <%end%> <!-- /if -->
+    <!-- ------------------------- -->
     </div> <!-- /mb-1 col-md-4 -->
 
     <!-- displaying user info -->
@@ -18,7 +19,7 @@
       <p>email : <%= @user.email %></p>
       <p>description : <%= @user.description %></p>
       <%= link_to "Editer mes infos", edit_user_path(@user.id), class: "btn btn-info" %>
-      <%= link_to "Réinitialiser mon mot de passe", edit_user_registration_path(@user.id), class: "btn btn-info" %>
+      <%= link_to "Paramètres du compte", edit_user_registration_path(@user.id), class: "btn btn-warning" %>
     </div> <!-- /class mb-1 col-md-8 -->
   </div> <!-- /row -->
   
@@ -42,8 +43,4 @@
 </div>
 
 <!-- add a new profile picture -->
-<%= form_tag user_profile_pictures_path(@user),multipart: true  do %>
-  <%= file_field_tag :profile_picture %>
-  <%= submit_tag "Téléverser la photo de profil" %>
-<% end %>
-<!-- ------------------------- -->
+
