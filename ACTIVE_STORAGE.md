@@ -98,10 +98,12 @@ $ rails routes grep | profile
 
 * Pour la photo de profil
   * ~~placer correctement l'affichage de la photo de profil (et contraindre sa taille !)~~ DONE
-  * deplacer l'ajout de la photo de profil à la création du profil
-    * nécessite de pouvoir ajouter des champs CUSTOM au formulaire DEVISE
-  * ajouter la possibilité de changer de photo via l'édition du profil
-  * modifier le seed pour ajouter aléatoirement une photo à chaque user
+  * ~~placer correctement les options d'ajout et de modification de la photo de profil~~ DONE
+  * ~~ajouter la possibilité de changer de photo via l'édition du profil~~ DONE
+  * ~~modifier le seed pour ajouter aléatoirement une photo à chaque user~~ DONE
+    * a nécessité un changement de configuration pour Active Storage
+      * voir [Rails GitHub issue 1](https://github.com/rails/rails/issues/33500)
+      * voir [Rails GitHub issue 2](https://github.com/rails/rails/issues/34939)
   * mettre en place une photo par défaut
 
 * La même pour l'évènement (je viens de voir que ce n'était pas demandé pour l'utilisateur :/) **boulet**
