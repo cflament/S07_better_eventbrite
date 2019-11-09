@@ -97,7 +97,9 @@ $ rails routes grep | profile
   * test en production
 
 * Pour la photo de profil
-  * placer correctement l'affichage de la photo de profil (et contraindre sa taille !)
+  * ~~placer correctement l'affichage de la photo de profil (et contraindre sa taille !)~~ DONE
+  * deplacer l'ajout de la photo de profil à la création du profil
+    * nécessite de pouvoir ajouter des champs CUSTOM au formulaire DEVISE
   * ajouter la possibilité de changer de photo via l'édition du profil
   * modifier le seed pour ajouter aléatoirement une photo à chaque user
   * mettre en place une photo par défaut
