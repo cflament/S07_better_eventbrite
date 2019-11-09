@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   # adding the custom fields for registration
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :description])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :description, :profile_picture])
   end
 
 
