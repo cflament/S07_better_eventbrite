@@ -1,6 +1,13 @@
-# TO-DO List for Better Eventbrite app
+# TO-DO LIST
 
-- [ ] brancher la view liste des participantes·ants
-- [ ] ajouter les restrictions d'accès aux pages de détail et d'édition des évènements
-- [ ] ajouter la possibilité de gratuité des évènements
-  * 
+## Rattrapage du jeudi
+
+### Active Storage
+
+* brancher active storage en local
+* mettre à jour le model User
+* mettre à jour le controller User
+* mettre à jour les routes
+* intégrer le formulaire d'ajout
+
+### Assets Pipeline
