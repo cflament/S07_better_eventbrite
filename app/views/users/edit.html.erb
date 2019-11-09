@@ -1,6 +1,32 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <!-- displaying current profile picture if any -->
+    <div class="col-md-4">
+      <div class="box h-100 d-flex justify-content-center align-items-center flex-column">
+        <%if @user.profile_picture.attached? %>
+          <p>Photo de profil actuelle :</p>
+          <%= image_tag @user.profile_picture, alt: 'profile_picture', class: 'img-fluid border border-dark rounded w-50' %>
+          <%= button_to 'Modifier ma photo de profil', '#', { :method => :get, :class => 'btn btn-sm btn-outline-warning mt-4' } %>
+          <%= button_to 'Supprimer ma photo de profil', user_profile_picture_path(@user) , { :method => :delete, :class => 'btn btn-sm btn-outline-danger my-2' } %>
+        <%else%>
+          <p class='text-secondary mt-3'>Vous n'avez pas encore défini de photo de profil.</p>
+          <!-- Adding a profile picture -->
+          <%= form_tag user_profile_pictures_path(@user),multipart: true, class: 'rounded' do %>
+            <p> <%= file_field_tag :profile_picture %> </p>
+            <p>
+              <%= button_tag type: 'submit', class: 'btn btn-sm btn-success mt-2 ml-5' do %>
+                Valider
+                <i class="fas fa-check-square fa-lg ml-2"></i>
+              <% end %>
+            </p>
+        <% end %> <!-- /form -->
+        <!-- ------------------------- -->
+      <%end%> <!-- /if -->
+      </div>
+    </div> <!-- /column -->
+    <!-- ------------------------------------------ -->
+
+    <div class="col-md-4">
       <br><br><br>
       <%= form_for :user, url: user_path(@user.id), method: "PUT", html: { class: "form-signin mt-3" } do |f| %>
         <h1 class="h3 mb-3 font-weight-normal text-center">Modifier mes infos :</h1>
