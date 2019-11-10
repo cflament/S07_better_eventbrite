@@ -30,6 +30,8 @@
         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <% if user_signed_in? %>
           <%= current_user.email %>
+          <!-- displaying miniature profile picture in navbar if user is connected -->
+          <%= image_tag current_user.profile_picture, { :alt => 'profile picture', :height => 30, :width => 30, :class => 'rounded-circle ml-3' } %>
         <% else %>
           Mon Compte 
         <% end %>
