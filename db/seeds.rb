@@ -9,7 +9,7 @@
 # create seed for 10 first users
 def user_seed
     User.destroy_all
-    3.times do |t|
+    10.times do |t|
         u = User.create(
             first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,
@@ -35,7 +35,7 @@ def profile_picture_seed
 end
 
 def events_seed
-    10.times do |t|
+    50.times do |t|
         e = Event.create(
             start_date: Faker::Date.between(from: DateTime.now + 50, to: 1.month.from_now),
             description: Faker::Lorem.sentence(word_count: 10, random_words_to_add: 4),
@@ -50,4 +50,5 @@ def events_seed
 end
 
 # user_seed
-events_seed 
+# profile_picture_seed
+# events_seed 
