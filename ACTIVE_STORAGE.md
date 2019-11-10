@@ -104,8 +104,8 @@ $ rails routes grep | profile
     * a nécessité un changement de configuration pour Active Storage
       * voir [Rails GitHub issue 1](https://github.com/rails/rails/issues/33500)
       * voir [Rails GitHub issue 2](https://github.com/rails/rails/issues/34939)
-  * mettre en place une photo par défaut
-    * pas encore trouvé comment !
+  * ~~mettre en place une photo par défaut~~ en fait non
+  * ~~afficher la photo de profil dans la navbar si elle existe~~ DONE
 
 * La même pour l'évènement (je viens de voir que ce n'était pas demandé pour l'utilisateur :/) **boulet**
   * en ajoutant une validation 'obligatoire' pour la photo de l'évènement
