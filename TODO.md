@@ -13,8 +13,18 @@
 ### Assets Pipeline
  * À peu près fait par nous deux je crois
 
-## Rattrapge du vendredi
-### Le namespace admin
+## Rattrapge du vendredi - namespace admin
+
+### Namespace, controller et view
+* créer la route correspondant au namespace admin
+* créer le controller admin, méthode index
+* créer le tableau de bord administrateur
+* gérer la restriction d'accès
+
+### Gestion des utilisateurs
+* CRUD complet sur le modèle User via le tableau de bord admin
+
+### À compléter
 
 
 ## Divers
