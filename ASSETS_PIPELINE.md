@@ -60,13 +60,17 @@ vendor
 ~~~
 
 ## Test
-* En local
-  * Boostrap
+
+### En local
+#### Boostrap
 ~~~bash
 $ rails server
 ~~~
 La navbar et les éléments bootstrap fonctionnent bien :)
-  * Modern-business template
+
+#### Modern-business template
+* le body a bien pris le padding de 56px défini dans `vendor/assets/stylesheets/modern-template.css`
+* ajout d'un composant de test (oui c'est moche sur la page du coup)
 `app/view/layouts/application.html.erb`
 ~~~html
     <!-- Test component from Modern business template-->
@@ -74,6 +78,31 @@ La navbar et les éléments bootstrap fonctionnent bien :)
     <!-- /test_component-->
 ~~~
 
-* En production
-  * simulation en local
-  
+### En production
+#### Simulation en local
+~~~bash
+$ rails assets:precompile
+~~~
+Jusque là tout va bien
+
+
+~~~bash
+$ RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true rails s
+~~~
+Évidemment ça merdouille un peu
+
+* problème de credentials :
+  * ai effacé le fichier `config/credentials.yml.enc` puis lancé la commande `$ rails credentials:edit` qui a généré `master.key` et `credentials.yml.enc`
+* problème d'envoi de mail de bienvenue
+  * ai commenté la ligne d'envoi du mail dans `app/models/user.rb`
+* problème de DB non prête
+
+~~~bash
+$ RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true rails db:create 
+$ RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true rails db:migrate
+$ RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true rails db:seed
+~~~ 
+Et là ça fonctionne :)
+
+#### Sur Heroku
+Pas fait du coup
