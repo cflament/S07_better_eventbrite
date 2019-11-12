@@ -1,0 +1,23 @@
+<h1>CRUD USERS</h1>
+
+<div class='table-responsive'>
+  <table class='table table-sm table-dark table-striped table-hover'>
+    <thead>
+      <th>User id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>User since</th>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %> </td>
+          <td><%= user.first_name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
