@@ -1,21 +1,38 @@
 <div class="container">
-    <br/>
-    <div class="mb-1">
-        <h1>Vos infos : </h1>
-        <p>Prénom : <%= @user.first_name %></p>
-        <p>Nom : <%= @user.last_name %></p>
-        <p>email : <%= @user.email %></p>
-        <p>description : <%= @user.description %></p>
-        <%= link_to "Editer mes infos", edit_user_path(@user.id), class: "btn btn-info" %>
-        <%= link_to "Réinitialiser mon mot de passe", edit_user_registration_path(@user.id), class: "btn btn-info" %>
-    </div>
-</div><br/>
+  <br/>
+  <div class='row mb-1'>
+    <!-- displaying current profile picture if any -->
+    <div class='mb-1 col-md-4'>
+      <%if @user.profile_picture.attached? %>
+        <%= image_tag @user.profile_picture, alt: 'profile_picture', class: 'img-fluid border border-dark rounded w-75' %>
+      <%else%>
+        <p class='text-secondary mt-3'>Vous n'avez pas encore défini de photo de profil.</p>
+      <%end%> <!-- /if -->
+    <!-- ------------------------- -->
+    </div> <!-- /mb-1 col-md-4 -->
+
+    <!-- displaying user info -->
+    <div class="mb-1 col-md-8">
+      <h1>Vos infos : </h1>
+      <p>Prénom : <%= @user.first_name %></p>
+      <p>Nom : <%= @user.last_name %></p>
+      <p>email : <%= @user.email %></p>
+      <p>description : <%= @user.description %></p>
+      <%= link_to "Editer mes infos", edit_user_path(@user.id), class: "btn btn-info" %>
+      <%= link_to "Paramètres du compte", edit_user_registration_path(@user.id), class: "btn btn-warning" %>
+    </div> <!-- /class mb-1 col-md-8 -->
+  </div> <!-- /row -->
+  
+  <br/>
+
+</div>
+<!-- displaying user hosted events -->
 <div class="container">
     <div ><h1>Vos événements :</h1><br/>
     </div> 
     <div class="list-group">
         <% @user.administrated_events.sort {|a,b| b.start_date <=> a.start_date }.each do |event| %>
-            <a href= <%= event_path(event.id) %> class="list-group-item list-group-item-action border-left border-info rounded-lg ">
+            <a href= <%= event_path(event.id) %> class="list-group-item list-group-item-action border-left border-info rounded-lg my-1 ">
                 <div class="column">
                     <h5 class="mb-1 "><%= event.title%></h5>
                     <small><%= event.start_date.strftime("%Y-%m-%d %H:%M:%S") %> (<%= event.duration %> minutes) </small>
@@ -24,3 +41,6 @@
         <% end %>
     </div>    
 </div>
+
+<!-- add a new profile picture -->
+

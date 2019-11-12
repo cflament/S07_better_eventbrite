@@ -1,6 +1,20 @@
-# TO-DO List for Better Eventbrite app
+# TO-DO LIST
 
-- [ ] brancher la view liste des participantes·ants
-- [ ] ajouter les restrictions d'accès aux pages de détail et d'édition des évènements
-- [ ] ajouter la possibilité de gratuité des évènements
-  * 
+## Rattrapage du jeudi
+
+### Active Storage
+
+* ~~brancher active storage en local~~ DONE
+* mettre à jour le model ~~User~~ **EVENT**
+* mettre à jour le controller ~~User~~ **EVENT**
+* mettre à jour les routes
+* intégrer le formulaire d'ajout
+
+### Assets Pipeline
+
+
+### Divers
+
+* ~~ajouter les champs Prénom... à la création du User~~ DONE
+  * nécessite de pouvoir ajouter des champs CUSTOM au formulaire DEVISE
+    * on change les paramètres autorisés par Devise cf [la doc](https://github.com/plataformatec/devise#strong-parameters) et [ce guide](http://www.peoplecancode.com/tutorials/adding-custom-fields-to-devise)

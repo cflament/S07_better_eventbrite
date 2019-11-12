@@ -6,7 +6,12 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- styles using assets pipeline -->
+      <link href="vendor/assets/stylesheets/bootstrap.css" rel="stylesheet">
+      <link href="vendor/assets/stylesheets/modern-business.css" rel="stylesheet">
+    <!-- /styles_assets_pipeline -->
+
     <script src="https://kit.fontawesome.com/f1f069f515.js" crossorigin="anonymous"></script>
   </head>
 
@@ -30,6 +35,10 @@
         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <% if user_signed_in? %>
           <%= current_user.email %>
+          <!-- displaying miniature profile picture in navbar if user is connected and has profile picture -->
+          <% if current_user.profile_picture.attached? %>
+            <%= image_tag current_user.profile_picture, { :alt => 'profile picture', :height => 30, :width => 30, :class => 'rounded-circle ml-3' } %>
+          <% end %>
         <% else %>
           Mon Compte 
         <% end %>
@@ -46,6 +55,10 @@
       </div>
     </nav>
 
+    <!-- Test component from Modern business template-->
+      <a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a>
+    <!-- /test_component-->
+    
     <% flash.each do |type, message| %>
       <div class="alert alert-<%= type %> %" role="alert"><%= message %></div>
     <% end %>
@@ -56,11 +69,10 @@
     
     <%= yield %>
 
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  
+    <!-- Boostrap core JS using assets pipeline -->
+      <script src="vendor/javascripts/jquery.js"></script>
+      <script src="vendor/javascripts/bootstrap.bundle.js"></script>
+    <!-- /bootstrap_js -->
   </body>
 
 </html>
