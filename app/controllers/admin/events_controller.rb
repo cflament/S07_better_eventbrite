@@ -1,2 +1,4 @@
-class Admin::EventsController < ApplicationController
+class Admin::EventsController < Admin::BaseController
+  def index
+  end
 end
