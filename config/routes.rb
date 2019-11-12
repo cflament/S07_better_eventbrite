@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    root 'dashboard#index'
     resources :users
     resources :events
   end
