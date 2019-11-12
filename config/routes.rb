@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     resources :profile_pictures, only: [:create, :destroy]
   end
+
+  namespace :admin do
+    root 'events#index'
+  end
 end
