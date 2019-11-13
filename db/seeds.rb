@@ -9,7 +9,7 @@
 # create seed for 10 first users
 def user_seed
     User.destroy_all
-    3.times do |t|
+    10.times do |t|
         u = User.create(
             first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,
@@ -22,8 +22,20 @@ def user_seed
     puts "3 users created"
 end 
 
+def profile_picture_seed
+  User.all.each do |user|
+    picture_name = 'profile_' + rand(1..12).to_s + '.jpg'
+    picture_path = Rails.root.join('app','assets', 'images', 'profile_pictures', picture_name)
+    user.profile_picture.attach(
+      io: File.open(picture_path),
+      filename: picture_name,
+      content_type: 'image/jpg'
+    )
+  end
+end
+
 def events_seed
-    10.times do |t|
+    50.times do |t|
         e = Event.create(
             start_date: Faker::Date.between(from: DateTime.now + 50, to: 1.month.from_now),
             description: Faker::Lorem.sentence(word_count: 10, random_words_to_add: 4),
@@ -38,4 +50,5 @@ def events_seed
 end
 
 # user_seed
-events_seed 
+# profile_picture_seed
+# events_seed 

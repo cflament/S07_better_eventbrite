@@ -13,5 +13,12 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+<<<<<<< HEAD
 //= require jquery
 //= require bootstrap.bundle
+=======
+
+// Boostrap theme
+//= require jquery
+//= require bootstrap.bundle
+>>>>>>> 2319e426926ecd0f71c8c4caf8f41ea573f8d3fe
