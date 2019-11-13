@@ -8,6 +8,7 @@
 <div class="container text-center">
     <div ><h1>Nos événements</h1><br/>
     </div> 
+    <%= link_to "test", root_path, class: 'page-link' %>
     <div class="list-group">
         <% @events.sort {|a,b| b.start_date <=> a.start_date }.each do |event| %>
             <a href= <%= event_path(event.id) %> class="list-group-item list-group-item-action border-left border-info rounded-lg ">
