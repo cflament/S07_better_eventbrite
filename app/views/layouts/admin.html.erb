@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> <%= yield(:title) %> </title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <!-- styles using assets pipeline -->
+      <link href="vendor/assets/stylesheets/bootstrap.css" rel="stylesheet">
+      <link href="vendor/assets/stylesheets/modern-business.css" rel="stylesheet">
+    <!-- /styles_assets_pipeline -->
+
+    <script src="https://kit.fontawesome.com/f1f069f515.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <header>
+      <!-- ADMINISTRATOR NAVBAR -->
+      <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Better eventbrite</a>
+        <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+          </li>
+        </ul>
+      </nav>
+      <!--/ADMINISTRATOR NAVBAR -->
+    </header>
+
+    <!-- DISPLAYING FLASHES -->
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type %> %" role="alert"><%= message %></div>
+    <% end %>
+
+    <!-- sidebar -->
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column mt-2">
+              <li>Users</li>
+              <li>Events
+                <ul>
+                  <li>To review</li>
+                  <li>To come</li>
+                  <li>Past</li>
+                </ul>
+              </li>
+              <li>Jacuzzi mode</li>
+              <li>Disco mode</li>
+            </ul>
+          </div> <!--/ SIDEBAR STICKY -->
+        </nav> <!-- /nav sidebar -->
+
+        <div class='col-md-10 bg-light'>
+
+          <!-- ACTUAL PAGE CONTENT -->
+          <%= yield %>
+        </div> <!-- /col-md-10 -->  
+
+      </div> <!-- /ROW -->
+    </div> <!-- /CONTAINER-FLUID -->
+
+    <!-- Boostrap core JS using assets pipeline -->
+      <script src="vendor/javascripts/jquery.js"></script>
+      <script src="vendor/javascripts/bootstrap.bundle.js"></script>
+    <!-- /bootstrap_js -->
+  </body>
+</html>
